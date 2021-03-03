@@ -2,30 +2,94 @@
 <html>
 <head>
 	<title>Splash screen</title>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+
 	<style>
 		*{
 			padding: 0px;
 			margin: 0px;
 		}
-
 		#mainContent{
 			width: 100vw;
 			height: 100vh;
+
 			background-color: rgb(200,0,200);
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			
+
 			font-size: 4rem;
 			font-family: sans-serif;
 		}
-
 	</style>
 </head>
 <body>
-	<div id="mainContent">
-		Hola
-	</div>
+	<script>
+		x = 100
+		y = 100
+		angulo = 0;
 
+		function setup() {
+		  createCanvas(windowWidth, windowHeight);
+		  colorfondo = color(255,181,0,10);
+		  colorBola = color(255,0,0);
+		  noStroke();
+		}
+
+		function draw() {
+		  background( colorfondo);
+		  // if ( keyIsPressed == true ) {
+		  //   //colorfondo = random(0, 255)
+		  //   x += 2;
+		  //   angulo += 0.4;
+		  // }
+		  
+		  if (keyIsDown(LEFT_ARROW)) {
+		    x -= 2;
+		    angulo -= 0.4;
+		  }
+
+		  if (keyIsDown(RIGHT_ARROW)) {
+		    x += 2;
+		    angulo += 0.4;
+		  }
+
+		  if (keyIsDown(UP_ARROW)) {
+		    y -= 2;
+		    angulo -= 0.4;
+		  }
+
+		  if (keyIsDown(DOWN_ARROW)) {
+		    y += 2;
+		    angulo += 0.4;
+		  }
+		  
+		  fill( colorBola )
+		  
+		  push()
+		  translate( x,y)
+		  rotate(angulo)
+		  arc(0,0,30,30,0, PI)
+		  pop()
+		 }
+
+		function keyPressed() {
+		  //colorfondo = random(0, 255)
+		  colorBola = color(0,0,0);
+		}
+
+		function keyReleased() {
+		  //colorfondo = 255;
+		  colorBola = color(255,0,0);
+		}
+
+		function windowResized(){
+			x = width/2
+			y = height/2
+		}
+	</script>
 </body>
 </html>
